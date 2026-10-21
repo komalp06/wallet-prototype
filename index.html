@@ -36,6 +36,7 @@ html.desk.fs .share-cap{display:none}
 html.fs body{background:#000}
 /* On a real phone: use the phone's own status bar, fill the whole screen height */
 html.phone,html.phone body{background:#F2F2F7 !important}
+html.phone{--hl:12px}
 html.phone #dc-root{left:0;top:var(--top);width:390px;height:var(--h);transform:scale(var(--s));transform-origin:0 0}
 html.phone #dc-root .sc-host{height:100%}
 html.phone #dc-root .sc-host>div{height:var(--h) !important}
@@ -50,7 +51,7 @@ html.desk{--r:54px;--shadow:0 0 0 10px var(--frame),0 30px 80px rgba(0,0,0,0.28)
 </style>
 <script>
 (function(){
-  var SHIFT=58; /* trims the drawn status-bar gap so content sits just under the real one */
+  var SHIFT=46; /* trims the drawn status-bar gap so content sits just under the real one */
   function sat(){var e=document.getElementById('sat');return e?e.getBoundingClientRect().height:0}
   function fit(){
     var w=window.innerWidth,h=window.innerHeight,de=document.documentElement;
@@ -501,7 +502,7 @@ button{font-family:inherit}
   <div class="stage" style="{{stageStyle}}">
 
     <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
-      <div class="{{enter}}" style="position: absolute; inset: 0; background: #F2F2F7; box-sizing: border-box; padding: 56px 20px 34px; display: flex; flex-direction: column">
+      <div class="{{enter}}" style="position: absolute; inset: 0; background: #F2F2F7; box-sizing: border-box; padding: calc(56px - var(--hl, 0px)) 20px 34px; display: flex; flex-direction: column">
         <div style="display: flex; align-items: center; justify-content: space-between; height: 48px">
           <h1 style="margin: 0; font-size: 34px; line-height: 41px; font-weight: 700; letter-spacing: 0.4px">Wallet</h1>
           <div style="display: flex; gap: 10px">
@@ -904,7 +905,7 @@ button{font-family:inherit}
     <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
       <div style="position: absolute; inset: 0">
         <button aria-label="Close menu" onClick="{{closeMenu}}" style="position: absolute; inset: 0; border: 0; background: transparent; padding: 0"></button>
-        <nav class="menu" aria-label="Wallet options" style="position: absolute; left: 130px; top: 54px; width: 249px; border-radius: 40px; overflow: hidden; background: rgba(244,245,250,0.62); -webkit-backdrop-filter: blur(28px) saturate(220%); backdrop-filter: blur(28px) saturate(220%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.75), 0 20px 50px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.05); padding: 14px 0 12px">
+        <nav class="menu" aria-label="Wallet options" style="position: absolute; left: 130px; top: calc(54px - var(--hl, 0px)); width: 249px; border-radius: 40px; overflow: hidden; background: rgba(244,245,250,0.62); -webkit-backdrop-filter: blur(28px) saturate(220%); backdrop-filter: blur(28px) saturate(220%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.75), 0 20px 50px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.05); padding: 14px 0 12px">
           <button class="row" style="width: 100%; border: 0; background: transparent; font: inherit; color: inherit; display: flex; align-items: center; gap: 18px; padding: 0 24px 0 28px; text-align: left; min-height: 60px">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M3.5 7.5L12 3l8.5 4.5L12 12z"></path><path d="M3.5 7.5v9L12 21l8.5-4.5v-9"></path><path d="M12 12v9"></path></svg>
             <span style="flex: 1; min-width: 0"><span style="display: block; font-size: 18px; line-height: 22px; letter-spacing: -0.43px">Orders</span></span>
